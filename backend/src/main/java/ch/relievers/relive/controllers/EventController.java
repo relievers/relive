@@ -1,16 +1,25 @@
 package ch.relievers.relive.controllers;
 
 import ch.relievers.relive.dtos.EventControllerDtos;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import ch.relievers.relive.entities.Event;
+import ch.relievers.relive.services.EventService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/events")
+@RequiredArgsConstructor
 public class EventController {
+
+    private final EventService eventService;
 
     @GetMapping("/ping")
     public EventControllerDtos.PingResponse pingPong() {
         return new EventControllerDtos.PingResponse();
+    }
+
+    @PostMapping("/")
+    public Event createEvent(@RequestBody EventControllerDtos.CreateEventRequest eventRequest) {
+        return eventService.createEvent(eventRequest);
     }
 }
