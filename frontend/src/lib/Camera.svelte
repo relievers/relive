@@ -3,6 +3,7 @@
 
 	let canvas: HTMLCanvasElement | undefined;
 	let video: HTMLVideoElement | undefined;
+	let filePicker: HTMLInputElement | undefined;
 	let loading = false;
 
 	const requestVideoCamera = async () => {
@@ -32,22 +33,31 @@
 		const img = canvas.toDataURL('image/png');
 	};
 
+	const shareImage = () => {};
+
 	onMount(requestVideoCamera);
 </script>
 
-<main class="h-full w-full relative">
+<main class="h-full w-full relative flex flex-col justify-end">
 	<!-- svelte-ignore a11y-media-has-caption -->
 	<video
 		bind:this={video}
-		class="h-full w-full absolute bg-black object-cover pointer-events-none"
+		class="h-full w-full absolute bg-black object-cover pointer-events-none -z-10"
 		playsinline
 	/>
-	<button
-		on:click={takePicture}
-		class="absolute bottom-10 text-white z-10 left-1/2 -translate-x-1/2 p-3 rounded-full select-none"
-	>
-		<div class="h-20 w-20 rounded-full border-4 white" />
-	</button>
+
+	<section class="flex justify-evenly items-center">
+		<div class="w-14" />
+		<button on:click={takePicture} class="text-white p-3 rounded-full select-none">
+			<div class="h-20 w-20 rounded-full border-4 white" />
+		</button>
+		<button class="rounded-full h-full" on:click={() => filePicker.click()}>
+			<div class="w-14 h-14 bg-purple-900 rounded-full flex justify-center items-center">
+				<div class="fa fa-upload text-white" />
+			</div>
+			<input bind:this={filePicker} type="file" class="hidden" />
+		</button>
+	</section>
 </main>
 
 <div class="w-0 h-0 overflow-hidden">
