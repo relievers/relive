@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @RequestMapping("/events")
@@ -15,11 +16,17 @@ public class EventController {
 
     private final EventService eventService;
 
+    /*
+    @GetMapping("/")
+    public List<EventControllerDtos.GenericEventResponse> getEvents(Principal principal) {
+
+    }*/
+
     @PostMapping("/")
     public EventControllerDtos.GenericEventResponse createEvent(
             @RequestBody EventControllerDtos.CreateEventRequest eventRequest,
             Principal principal) {
-        Event newEvent = eventService.createEvent(eventRequest);
+        Event newEvent = eventService.createEvent(eventRequest, Integer.valueOf(principal.getName()));
         EventControllerDtos.EventState state = eventService.calcEventState(newEvent);
         return new EventControllerDtos.GenericEventResponse(
                 newEvent.getDisplayName(),
@@ -33,7 +40,7 @@ public class EventController {
     @PutMapping("/{id}")
     public EventControllerDtos.GenericEventResponse updateEvent(
             @RequestBody EventControllerDtos.CreateEventRequest eventRequest,
-            @RequestParam Integer id,
+            @PathVariable Integer id,
             Principal principal) {
         Event newEvent = eventService.updateEvent(eventRequest, id);
         EventControllerDtos.EventState state = eventService.calcEventState(newEvent);
@@ -44,5 +51,10 @@ public class EventController {
                 newEvent.getDuration(),
                 state
         );
+    }
+
+    @PostMapping("/{id}/participations")
+    public void participateEvent(@PathVariable Integer id, Principal principal) {
+        eventService.participateEvent(id, Integer.valueOf(principal.getName()));
     }
 }
