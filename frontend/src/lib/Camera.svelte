@@ -5,6 +5,9 @@
 	let time = new Date();
 
   	function updateTime() {
+		if (imgUrl) {
+			return;
+		}
     	time = new Date();
   	}
 
