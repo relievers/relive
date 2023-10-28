@@ -35,7 +35,6 @@
 	onMount(requestVideoCamera);
 </script>
 
-<!-- <canvas id="canvas" height="1920" width="1080" bind:this={canvas} class="opacity-0 absolute" /> -->
 <main class="h-full w-full relative">
 	<!-- svelte-ignore a11y-media-has-caption -->
 	<video
@@ -50,3 +49,7 @@
 		<div class="h-20 w-20 rounded-full border-4 white" />
 	</button>
 </main>
+
+<div class="w-0 h-0 overflow-hidden">
+	<canvas id="canvas" height="1920" width="1080" bind:this={canvas} class="opacity-0" />
+</div>
