@@ -1,5 +1,5 @@
 <script>
-	import Camera from "$lib/Camera.svelte";
+	import Camera from '$lib/Camera.svelte';
 </script>
 
-<Camera></Camera>
+<Camera />
