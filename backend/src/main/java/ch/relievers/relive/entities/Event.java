@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity(name = "`event`")
 @NoArgsConstructor
@@ -24,8 +25,11 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    //@ManyToOne()
-    //private User owner;
+    @ManyToOne
+    private User owner;
+
+    @OneToMany(mappedBy = "event")
+    private List<MediaItem> medias;
 
     private String displayName;
 
