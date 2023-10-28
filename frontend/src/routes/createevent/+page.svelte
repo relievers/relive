@@ -24,8 +24,8 @@
                 <input type="number" id="duration" name="duration" class="border-none rounded-full w-full py-2 px-3 text-white bg-gray-200 focus:outline-none focus:border-blue-500" style="background-color: #282A31;">
             </div>
 
-            <div class="mb-4">
-                <button type="submit" class="bg-blue-500 text-white font-bold py-3 px-4 rounded-full" style="background-color:#5C3D95">
+            <div class="mb-4 flex justify-between">
+                <button type="submit" class="ml-auto bg-blue-500 text-white font-bold py-3 px-4 rounded-full " style="background-color:#5C3D95">
                     <i class="fa fa-check text-2xl mx-auto"></i>
                 </button>
             </div>
