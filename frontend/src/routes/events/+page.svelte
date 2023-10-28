@@ -26,19 +26,6 @@
 
 <div class="flex-grow w-full bg-red-300">
     <div class="bg-gray-900 flex flex-col justify-center items-center">
-        <h1 class="text-white text-4xl">Events</h1>
-        <h2 class="text-white text-2xl"> Ongoing Event</h2>
-        {#each events as event}
-            {#if event.state === 'ONGOING'}
-                <div>
-                    <span class="text-white">
-                        {event.id}, {event.state}, {event.description}, {event.startDateType}, {event.duration}, {event.displayName}, {event.ownerId}
-                    </span>
-                </div>
-            {/if}
-        {/each}
-    </div>
-    <div class="bg-gray-900 flex flex-col justify-center items-center">
         <h2 class="text-white text-2xl">Your Events</h2>
         {#each events as event}
             {#if event.state === 'PLANNED' && event.ownerId === 1} <!--TODO: OwnerID-->
