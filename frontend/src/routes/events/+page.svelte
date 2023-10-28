@@ -1,11 +1,14 @@
 <script>
     // Mock Data
     let events = [
-        { id: 1, state: 'PAST', description: "Day one of coding", startDateTime: '28-10-2023 09:30', duration: 14, displayName: "BaselHack 2023", ownerId: 1 },
-        { id: 2, state: 'ONGOING', description: "Hacking in Pratteln", startDateTime: '28-10-2023 09:30', duration: 36, displayName: "BaselHack 2023", ownerId: 1 },
-        { id: 3, state: 'PLANNED', description: "Hacking again in Pratteln", startDateTime: '28-10-2024 09:30', duration: 36, displayName: "BaselHack 2024", ownerId: 1 },
-        { id: 4, state: 'PLANNED', description: "Hacking again in Pratteln", startDateTime: '28-10-2025 09:30', duration: 36, displayName: "BaselHack 2025", ownerId: 1 },
-        { id: 5, state: 'PAST', description: "I love Techno", startDateTime: '25-05-2023 22:30', duration: 2, displayName: "Viertel Klub: Stella Bossi", ownerId: 1 }
+        { id: 1, state: 'PAST', description: "Day one of coding", startDateTime: '28-10-2023 09:30', duration: 14, displayName: "Basel Hack 2023", ownerId: 1 },
+        { id: 2, state: 'ONGOING', description: "Hacking in Pratteln", startDateTime: '28-10-2023 09:30', duration: 36, displayName: "Basel Hack 2023", ownerId: 1 },
+        { id: 3, state: 'PLANNED', description: "Hacking again in Pratteln", startDateTime: '28-10-2024 09:30', duration: 36, displayName: "Basel Hack 2024", ownerId: 1 },
+        { id: 4, state: 'PLANNED', description: "Hacking again in Pratteln", startDateTime: '28-10-2025 09:30', duration: 36, displayName: "Baselhackersasdf 2025", ownerId: 1 },
+        { id: 5, state: 'PAST', description: "I love Techno", startDateTime: '25-05-2023 22:30', duration: 2, displayName: "Viertel Klub: Stella Bossi", ownerId: 1 },
+        { id: 6, state: 'PLANNED', description: "Hacking again in Pratteln", startDateTime: '28-10-2025 09:30', duration: 36, displayName: "Baselhack Withverylo", ownerId: 1 },
+        { id: 6, state: 'PLANNED', description: "Hacking again in Pratteln", startDateTime: '28-10-2025 09:30', duration: 36, displayName: "Baselhack Withverylo", ownerId: 1 },
+        { id: 6, state: 'PLANNED', description: "Hacking again in Pratteln", startDateTime: '28-10-2025 09:30', duration: 36, displayName: "Baselhack Withverylo", ownerId: 1 },
     ];
 
     // Color codes for variation
@@ -13,6 +16,11 @@
 
     // iterator for color variation
     let i = 0;
+
+    $:prevEvent = events.filter(it => it.state === 'PAST')[0];
+
+    $:ownEvents = events.filter(it => it.ownerId === 1 /* TODO: Change to user.id */)
+                        .filter(it => it.state === 'PLANNED' || it.state === 'ONGOING');
 
     function getColor() {
         let color = colors[i];
@@ -27,31 +35,31 @@
         <h1 class="text-white text-4xl">Events</h1>
     </div>
     <div class="flex flex-col">
-        <h2 class="text-white text-2xl pt-4">ReLive Basel Hack 2023</h2>
-        {#each events as event}
-            {#if event.state === 'PLANNED' && event.ownerId === 1} <!--TODO: OwnerID-->
-                <div>
-                    <span class="text-white">
-                        {event.id}, {event.state}, {event.description}, {event.startDateType}, {event.duration}, {event.displayName}, {event.ownerId}
-                    </span>
-                </div>
-            {/if}
-        {/each} 
+        <h2 class="text-white text-2xl pt-4">ReLive {prevEvent.displayName}</h2>
+        <div class="bg-white w-full h-60 rounded-xl my-2 overflow-hidden">
+            <img src="images/event-default-thumbnail.jpg" alt="Image of {prevEvent.displayName}">
+            <!-- TODO: Display thumbnail image of event -->
+        </div>
+    </div>
+    <div class="flex flex-col py-4">
+        <button class="btn bg-white btn-primary rounded-xl text-accent font-bold py-3 my-4">ReLive Past Events</button>
     </div>
     <div class="flex flex-col">
-        <button class="btn bg-white btn-primary rounded-xl text-accent font-bold py-1.5 my-4">ReLive Past Events</button>
-    </div>
-    <div class="flex flex-col">
-        <h2 class="text-white text-2xl pt-4">Manage Event</h2>
-        {#each events as event}
-            {#if event.state === 'PAST'} 
-                <div style="background-color: #{getColor()}">
-                    <span class="text-white">
-                        {event.id}, {event.state}, {event.description}, {event.startDateType}, {event.duration}, {event.displayName}, {event.ownerId}
+        <h2 class="text-white text-2xl">Manage Events</h2>
+        <div class="flex flex-row my-2 overflow-x-scroll overflow-y-hidden">
+            {#each ownEvents as event}
+                <div class="flex flex-col mx-2 items-center" style="min-width: 5rem; max-width: 5rem; width: 5rem;">
+                    <div class="bg-accent p-2 rounded-xl break-words w-full h-full overflow-hidden" style="min-height: 8rem; max-height: 8rem; height: 8rem">
+                        <span class="text-white text-xl">
+                            {event.displayName}
+                        </span>
+                    </div>
+                    <span class="text-white text-sm pt-1">
+                        {event.startDateTime.split(' ')[0]}
                     </span>
                 </div>
                 
-            {/if}
-        {/each}
+            {/each}
+        </div>
     </div>
 </div>
