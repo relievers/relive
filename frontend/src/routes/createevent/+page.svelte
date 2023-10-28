@@ -1,8 +1,8 @@
-<div class="flex-grow w-full bg-red-300">
-    <div class="bg-gray-900 flex flex-col justify-center items-center">
+<div class="flex-grow w-full bg-background">
+    <div class="flex flex-col justify-center items-center">
     <h1 class="text-white text-4xl">Create Event</h1>
     </div>
-    <div class="bg-gray-900 w-full flex flex-col justify-center items-center">
+    <div class="w-full flex flex-col justify-center items-center">
         <form class="p-6 rounded-lg w-full">
             <div class="mb-4">
                 <label for="event-name" class="block text-white text-sm font-bold mb-2">Event Name</label>

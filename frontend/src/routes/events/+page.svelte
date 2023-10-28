@@ -1,6 +1,4 @@
 <script>
-	import { each } from "svelte/internal";
-
     // Mock Data
     let events = [
         { id: 1, state: 'PAST', description: "Day one of coding", startDateTime: '28-10-2023 09:30', duration: 14, displayName: "BaselHack 2023", ownerId: 1 },
@@ -24,12 +22,12 @@
     }
 </script>
 
-<div class="flex-grow w-full bg-red-300">
-    <div class="bg-gray-900 flex flex-col justify-center items-center">
-    <h1 class="text-white text-4xl">Events</h1>
+<div class="flex-grow w-full bg-background px-4">
+    <div class="flex flex-col justify-center items-center py-14">
+        <h1 class="text-white text-4xl">Events</h1>
     </div>
-    <div class="bg-gray-900 flex flex-col justify-center items-center">
-        <h2 class="text-white text-2xl">Your Events</h2>
+    <div class="flex flex-col">
+        <h2 class="text-white text-2xl pt-4">ReLive Basel Hack 2023</h2>
         {#each events as event}
             {#if event.state === 'PLANNED' && event.ownerId === 1} <!--TODO: OwnerID-->
                 <div>
@@ -40,8 +38,11 @@
             {/if}
         {/each} 
     </div>
-    <div class="bg-gray-900 flex flex-col justify-center items-center">
-        <h2 class="text-white text-2xl">ReLive your Memories</h2>
+    <div class="flex flex-col">
+        <button class="btn bg-white btn-primary rounded-xl text-accent font-bold py-1.5 my-4">ReLive Past Events</button>
+    </div>
+    <div class="flex flex-col">
+        <h2 class="text-white text-2xl pt-4">Manage Event</h2>
         {#each events as event}
             {#if event.state === 'PAST'} 
                 <div style="background-color: #{getColor()}">

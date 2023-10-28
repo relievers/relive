@@ -2,7 +2,7 @@
     let user = { activeEvent: false };
 </script>
 
-<div class="bg-gray-900 text-white p-4">
+<div class="bg-background text-white p-4">
     <div class="container mx-auto flex justify-between">
         <div class="w-1/3 text-center">
             <a class="bg-transparent hover:text-gray-500 font-bold flex flex-col items-center" href="/events">
