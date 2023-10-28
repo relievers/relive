@@ -23,20 +23,21 @@
         <h1 class="text-white text-4xl">Events</h1>
     </div>
     <div class="flex flex-col">
-        <h2 class="text-white text-2xl pt-4">ReLive {prevEvent.displayName}</h2>
-        <div class="bg-white w-full h-60 rounded-xl my-2 overflow-hidden cursor-pointer">
+        <h2 class="text-white text-2xl pt-4">ReLive</h2>
+        <a href="/timeline" class="bg-white w-full h-60 rounded-xl my-2 overflow-hidden cursor-pointer relative">
             <img src="/images/event-default-thumbnail.jpg" alt="Image of {prevEvent.displayName}">
+            <h3 class="absolute text-white drop-shadow left-1/2 -translate-x-1/2 top-2 font-bold text-xl">{prevEvent.displayName}</h3>
             <!-- TODO: Display thumbnail image of event -->
-        </div>
+        </a>
     </div>
     <div class="flex flex-col py-4">
-        <a href="/timeline" class="btn bg-white btn-primary rounded-xl text-accent font-bold py-3 my-4">ReLive Past Events</a>
+        <a href="/events/past" class="btn bg-white btn-primary rounded-xl text-accent text-center font-bold py-3 my-4">ReLive Past Events</a>
     </div>
     <div class="flex flex-col">
         <h2 class="text-white text-2xl">Manage Events</h2>
         <div class="flex flex-row my-2 overflow-x-scroll overflow-y-hidden">
             {#each ownEvents as event}
-                <div class="flex flex-col mx-2 items-center cursor-pointer" style="min-width: 5rem; max-width: 5rem; width: 5rem;">
+                <a href="/events/{event.id}/edit" class="flex flex-col mx-2 items-center cursor-pointer" style="min-width: 5rem; max-width: 5rem; width: 5rem;">
                     <div class="bg-accent p-2 rounded-xl break-words w-full h-full overflow-hidden" style="min-height: 8rem; max-height: 8rem; height: 8rem">
                         <span class="text-white text-xl">
                             {event.displayName}
@@ -45,7 +46,7 @@
                     <span class="text-white text-sm pt-1">
                         {event.startDateTime.split(' ')[0]}
                     </span>
-                </div>
+                </a>
                 
             {/each}
         </div>
