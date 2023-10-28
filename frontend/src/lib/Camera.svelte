@@ -1,6 +1,16 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
+	// Time Management
+	let time = new Date();
+
+  	function updateTime() {
+    	time = new Date();
+  	}
+
+	setInterval(updateTime, 1000); // Updates the Time every sec
+
+
 	const eventName = 'BASELHACK 2023';
 
 	let canvas: HTMLCanvasElement | undefined;
@@ -74,6 +84,7 @@
 	{/if}
 
 	<section class="text-white py-5 text-center">
+		<div class="">{time.toLocaleTimeString()}</div>
 		<h1 class="font-bold">{eventName}</h1>
 		<div class="">Capture the moment</div>
 	</section>
