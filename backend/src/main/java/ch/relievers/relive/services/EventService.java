@@ -3,6 +3,7 @@ package ch.relievers.relive.services;
 import ch.relievers.relive.dtos.EventControllerDtos;
 import ch.relievers.relive.entities.Event;
 import ch.relievers.relive.repositories.EventRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,16 @@ public class EventService {
                 eventRequest.getStartDateTime(),
                 eventRequest.getDuration());
         return eventRepository.save(newEvent);
+    }
+
+    @Transactional
+    public Event updateEvent(EventControllerDtos.CreateEventRequest eventRequest, Integer eventId) {
+        Event event = eventRepository.findById(eventId).orElseThrow(EntityNotFoundException::new);
+        if(eventRequest.getDisplayName() != null) event.setDisplayName(eventRequest.getDisplayName());
+        if(eventRequest.getDescription() != null) event.setDescription(eventRequest.getDescription());
+        if(eventRequest.getDuration() != null) event.setDuration(eventRequest.getDuration());
+        if(eventRequest.getStartDateTime() != null) event.setStartDateTime(eventRequest.getStartDateTime());
+        return eventRepository.save(event);
     }
 
     public EventControllerDtos.EventState calcEventState(Event event) {

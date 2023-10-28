@@ -54,11 +54,9 @@ POST /events/<id>/medias
 ### Create new Comment
 ```
 POST /events/<id>/medias/<id>/comments
-POST /medias/<id>/comments
 ```
 
 ### Retreive all Comments for one Media
 ```
 GET /events/<id>/medias/<id>/comments
-GET /medias/<id>/comments
 ```
