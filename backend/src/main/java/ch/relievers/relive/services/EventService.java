@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -54,11 +55,15 @@ public class EventService {
         participationRepository.save(participation);
     }
 
-    /*
+
     public List<Event> getAllEventsOfUser(Integer userId) {
         Set<Participation> participations = participationRepository.findAllByUserId(userId);
-
-    }*/
+        List<Event> events = new ArrayList<>();
+        for(Participation p : participations) {
+            events.add(p.getEvent());
+        }
+        return events;
+    }
 
     public EventControllerDtos.EventState calcEventState(Event event) {
         LocalDateTime now = LocalDateTime.now();
