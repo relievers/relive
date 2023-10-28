@@ -2,9 +2,11 @@
 	import Header from './Header.svelte';
 	import './styles.css';
 	import '../app.css';
+	import Footer from '$lib/Footer.svelte';
 </script>
 
 <slot />
+<Footer />
 
 <style>
 	.app {
