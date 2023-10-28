@@ -42,6 +42,11 @@
 		imgUrl = img;
 	};
 
+	const deleteImage = () => {
+		imgUrl = null;
+		requestVideoCamera();
+	};
+
 	const pickFile = (e) => {
 		const reader = new FileReader();
 		reader.onload = (e) => {
@@ -58,7 +63,7 @@
 	<!-- svelte-ignore a11y-media-has-caption -->
 	{#if imgUrl}
 		<div class="h-full w-full absolute -z-10">
-			<img src={imgUrl} alt="My moment" class="h-full w-full flex" />
+			<img src={imgUrl} alt="My moment" class="h-full w-full flex object-cover" />
 		</div>
 	{:else}
 		<video
@@ -73,18 +78,31 @@
 		<div class="">Capture the moment</div>
 	</section>
 
-	<section class="flex justify-evenly items-center">
-		<div class="w-14" />
-		<button on:click={takePicture} class="text-white p-3 rounded-full select-none">
-			<div class="h-20 w-20 rounded-full border-4 white" />
-		</button>
-		<button class="rounded-full h-full" on:click={() => filePicker.click()}>
-			<div class="w-14 h-14 bg-purple-900 rounded-full flex justify-center items-center">
-				<div class="fa fa-upload text-white" />
-			</div>
-			<input bind:this={filePicker} type="file" class="hidden" on:change={pickFile} />
-		</button>
-	</section>
+	{#if !imgUrl}
+		<section class="flex justify-evenly items-center">
+			<div class="w-14" />
+
+			<button on:click={takePicture} class="text-white p-3 rounded-full select-none">
+				<div class="h-20 w-20 rounded-full border-4 white" />
+			</button>
+			<button class="rounded-full h-full" on:click={() => filePicker.click()}>
+				<div class="w-14 h-14 bg-purple-900 rounded-full flex justify-center items-center">
+					<div class="fa fa-upload text-white" />
+				</div>
+				<input bind:this={filePicker} type="file" class="hidden" on:change={pickFile} />
+			</button>
+		</section>
+	{:else}
+		<!-- Image selected -->
+		<section class="w-full p-8 flex justify-between items-center text-white">
+			<button on:click={deleteImage} class="text-white p-3 rounded-full select-none bg-gray-800">
+				Cancel
+			</button>
+			<button on:click={takePicture} class="text-white p-3 rounded-full select-none bg-purple-900">
+				Publish
+			</button>
+		</section>
+	{/if}
 </main>
 
 <div class="w-0 h-0 overflow-hidden">
