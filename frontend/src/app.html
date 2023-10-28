@@ -6,9 +6,11 @@
 		<meta name="viewport" content="width=device-width" />
 		<link rel="manifest" crossorigin="use-credentials" href="manifest.json" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<!-- <meta name="apple-mobile-web-app-status-bar-style" content="black"> -->
 		%sveltekit.head%
 	</head>
-	<body data-sveltekit-preload-data="hover" style="height: 100%; overflow: hidden;">
-		<div style="display: contents; height: 100%">%sveltekit.body%</div>
+	<body data-sveltekit-preload-data="hover" style="height: 100%; background: black; positition: absolute">
+		<div style="display: contents;">%sveltekit.body%</div>
 	</body>
 </html>

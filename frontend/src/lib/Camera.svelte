@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	let videoSource = null;
+	let canvas: HTMLCanvasElement | undefined;
+	let video: HTMLVideoElement | undefined;
 	let loading = false;
 
 	const requestVideoCamera = async () => {
@@ -14,8 +15,8 @@
 					height: 1920
 				}
 			});
-			videoSource.srcObject = stream;
-			videoSource.play();
+			video.srcObject = stream;
+			video.play();
 			loading = false;
 		} catch (error) {
 			alert(error);
@@ -23,20 +24,30 @@
 		}
 	};
 
+	const takePicture = () => {
+		console.log(video.srcObject);
+		const height = 1920;
+		const width = 1080;
+		canvas.getContext('2d').drawImage(video, 0, 0, width, height, 0, 0, width, height);
+		const img = canvas.toDataURL('image/png');
+	};
+
 	onMount(requestVideoCamera);
 </script>
 
-<main class="h-full relative">
+<!-- <canvas id="canvas" height="1920" width="1080" bind:this={canvas} class="opacity-0 absolute" /> -->
+<main class="h-full w-full relative">
 	<!-- svelte-ignore a11y-media-has-caption -->
 	<video
-		bind:this={videoSource}
-		class="h-full w-full bg-black object-cover pointer-events-none"
+		bind:this={video}
+		class="h-full w-full absolute bg-black object-cover pointer-events-none"
 		playsinline
 	/>
+	<div class="bg-red-200 h-full w-full" />
 	<button
-		on:click={requestVideoCamera}
-		class="absolute bottom-10 text-white z-10 bg-gray-800 left-1/2 -translate-x-1/2 p-3 rounded"
+		on:click={takePicture}
+		class="absolute bottom-10 text-white z-10 left-1/2 -translate-x-1/2 p-3 rounded-full select-none"
 	>
-		Enable Camera
+		<div class="h-20 w-20 rounded-full border-4 white" />
 	</button>
 </main>
