@@ -8,10 +8,7 @@ import java.time.LocalDateTime;
 
 public class EventControllerDtos {
 
-    @Data
-    public static class PingResponse {
-        private String ping = "pong";
-    }
+    public enum EventState { PLANNED, ONGOING, PAST }
 
     @Data
     @AllArgsConstructor
@@ -21,5 +18,16 @@ public class EventControllerDtos {
         private String description;
         private LocalDateTime startDateTime;
         private Integer duration;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class GenericEventResponse {
+        private String displayName;
+        private String description;
+        private LocalDateTime startDateTime;
+        private Integer duration;
+        private EventState state;
     }
 }

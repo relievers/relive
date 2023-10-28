@@ -13,15 +13,12 @@ import java.time.LocalDateTime;
 @Setter
 public class Event {
 
-    public Event(String displayName, String description, LocalDateTime startDateTime, Integer duration, EventState state) {
+    public Event(String displayName, String description, LocalDateTime startDateTime, Integer duration) {
         this.displayName = displayName;
         this.description = description;
         this.startDateTime = startDateTime;
         this.duration = duration;
-        this.state = state;
     }
-
-    public enum EventState { PLANNED, ONGOING, PAST }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +35,5 @@ public class Event {
 
     // Unit = minutes
     private Integer duration;
-
-    private EventState state;
 
 }

@@ -7,6 +7,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @RequiredArgsConstructor
 @Service
 public class EventService {
@@ -19,9 +21,14 @@ public class EventService {
                 eventRequest.getDisplayName(),
                 eventRequest.getDescription(),
                 eventRequest.getStartDateTime(),
-                eventRequest.getDuration(),
-                Event.EventState.PLANNED);
+                eventRequest.getDuration());
         return eventRepository.save(newEvent);
     }
 
+    public EventControllerDtos.EventState calcEventState(Event event) {
+        LocalDateTime now = LocalDateTime.now();
+        if(now.isBefore(event.getStartDateTime())) return EventControllerDtos.EventState.PLANNED;
+        if(now.isBefore(event.getStartDateTime().plusMinutes(event.getDuration()))) return EventControllerDtos.EventState.ONGOING;
+        return EventControllerDtos.EventState.PAST;
+    }
 }

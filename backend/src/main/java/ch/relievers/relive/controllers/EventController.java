@@ -13,13 +13,16 @@ public class EventController {
 
     private final EventService eventService;
 
-    @GetMapping("/ping")
-    public EventControllerDtos.PingResponse pingPong() {
-        return new EventControllerDtos.PingResponse();
-    }
-
     @PostMapping("/")
-    public Event createEvent(@RequestBody EventControllerDtos.CreateEventRequest eventRequest) {
-        return eventService.createEvent(eventRequest);
+    public EventControllerDtos.GenericEventResponse createEvent(@RequestBody EventControllerDtos.CreateEventRequest eventRequest) {
+        Event newEvent = eventService.createEvent(eventRequest);
+        EventControllerDtos.EventState state = eventService.calcEventState(newEvent);
+        return new EventControllerDtos.GenericEventResponse(
+                newEvent.getDisplayName(),
+                newEvent.getDescription(),
+                newEvent.getStartDateTime(),
+                newEvent.getDuration(),
+                state
+        );
     }
 }
