@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,25 +17,22 @@ public class EventController {
 
     private final EventService eventService;
 
-    /*
     @GetMapping("/")
     public List<EventControllerDtos.GenericEventResponse> getEvents(Principal principal) {
-
-    }*/
+        List<Event> events = eventService.getAllEventsOfUser(Integer.valueOf(principal.getName()));
+        List<EventControllerDtos.GenericEventResponse> response = new ArrayList<>();
+        for(Event event : events) {
+            response.add(convertDto(event));
+        }
+        return response;
+    }
 
     @PostMapping("/")
     public EventControllerDtos.GenericEventResponse createEvent(
             @RequestBody EventControllerDtos.CreateEventRequest eventRequest,
             Principal principal) {
         Event newEvent = eventService.createEvent(eventRequest, Integer.valueOf(principal.getName()));
-        EventControllerDtos.EventState state = eventService.calcEventState(newEvent);
-        return new EventControllerDtos.GenericEventResponse(
-                newEvent.getDisplayName(),
-                newEvent.getDescription(),
-                newEvent.getStartDateTime(),
-                newEvent.getDuration(),
-                state
-        );
+        return convertDto(newEvent);
     }
 
     @PutMapping("/{id}")
@@ -43,18 +41,23 @@ public class EventController {
             @PathVariable Integer id,
             Principal principal) {
         Event newEvent = eventService.updateEvent(eventRequest, id);
-        EventControllerDtos.EventState state = eventService.calcEventState(newEvent);
-        return new EventControllerDtos.GenericEventResponse(
-                newEvent.getDisplayName(),
-                newEvent.getDescription(),
-                newEvent.getStartDateTime(),
-                newEvent.getDuration(),
-                state
-        );
+        return convertDto(newEvent);
     }
 
     @PostMapping("/{id}/participations")
     public void participateEvent(@PathVariable Integer id, Principal principal) {
         eventService.participateEvent(id, Integer.valueOf(principal.getName()));
+    }
+
+
+    private EventControllerDtos.GenericEventResponse convertDto(Event event) {
+        EventControllerDtos.EventState state = eventService.calcEventState(event);
+        return new EventControllerDtos.GenericEventResponse(
+                event.getDisplayName(),
+                event.getDescription(),
+                event.getStartDateTime(),
+                event.getDuration(),
+                state
+        );
     }
 }
