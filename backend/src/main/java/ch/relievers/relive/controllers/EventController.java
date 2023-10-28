@@ -1,16 +1,48 @@
 package ch.relievers.relive.controllers;
 
 import ch.relievers.relive.dtos.EventControllerDtos;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import ch.relievers.relive.entities.Event;
+import ch.relievers.relive.services.EventService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/events")
+@RequiredArgsConstructor
 public class EventController {
 
-    @GetMapping("/ping")
-    public EventControllerDtos.PingResponse pingPong() {
-        return new EventControllerDtos.PingResponse();
+    private final EventService eventService;
+
+    @PostMapping("/")
+    public EventControllerDtos.GenericEventResponse createEvent(
+            @RequestBody EventControllerDtos.CreateEventRequest eventRequest,
+            Principal principal) {
+        Event newEvent = eventService.createEvent(eventRequest);
+        EventControllerDtos.EventState state = eventService.calcEventState(newEvent);
+        return new EventControllerDtos.GenericEventResponse(
+                newEvent.getDisplayName(),
+                newEvent.getDescription(),
+                newEvent.getStartDateTime(),
+                newEvent.getDuration(),
+                state
+        );
+    }
+
+    @PutMapping("/{id}")
+    public EventControllerDtos.GenericEventResponse updateEvent(
+            @RequestBody EventControllerDtos.CreateEventRequest eventRequest,
+            @RequestParam Integer id,
+            Principal principal) {
+        Event newEvent = eventService.updateEvent(eventRequest, id);
+        EventControllerDtos.EventState state = eventService.calcEventState(newEvent);
+        return new EventControllerDtos.GenericEventResponse(
+                newEvent.getDisplayName(),
+                newEvent.getDescription(),
+                newEvent.getStartDateTime(),
+                newEvent.getDuration(),
+                state
+        );
     }
 }
