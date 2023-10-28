@@ -16,9 +16,10 @@ public class User {
 
     public enum RegistrationState { AUTO_CREATED, REGISTERED }
 
-    public User(String name, RegistrationState registrationState) {
+    public User(String name, RegistrationState registrationState, String pwHash) {
         this.name = name;
         this.registrationState = registrationState;
+        this.pwHash = pwHash;
     }
 
     @Id
