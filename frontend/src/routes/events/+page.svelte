@@ -42,7 +42,7 @@
         </div>
     </div>
     <div class="flex flex-col py-4">
-        <button class="btn bg-white btn-primary rounded-xl text-accent font-bold py-3 my-4">ReLive Past Events</button>
+        <a href="/timeline" class="btn bg-white btn-primary rounded-xl text-accent font-bold py-3 my-4">ReLive Past Events</a>
     </div>
     <div class="flex flex-col">
         <h2 class="text-white text-2xl">Manage Events</h2>
