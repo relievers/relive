@@ -43,7 +43,6 @@
 		class="h-full w-full absolute bg-black object-cover pointer-events-none"
 		playsinline
 	/>
-	<div class="bg-red-200 h-full w-full" />
 	<button
 		on:click={takePicture}
 		class="absolute bottom-10 text-white z-10 left-1/2 -translate-x-1/2 p-3 rounded-full select-none"
