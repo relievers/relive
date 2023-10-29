@@ -37,6 +37,7 @@ public class EventService {
         newEvent = eventRepository.save(newEvent);
         Participation participation = new Participation(owner, newEvent);
         participationRepository.save(participation);
+        newEvent.setState(calcEventState(newEvent));
         return newEvent;
     }
 
@@ -47,7 +48,9 @@ public class EventService {
         if(eventRequest.getDescription() != null) event.setDescription(eventRequest.getDescription());
         if(eventRequest.getDuration() != null) event.setDuration(eventRequest.getDuration());
         if(eventRequest.getStartDateTime() != null) event.setStartDateTime(eventRequest.getStartDateTime());
-        return eventRepository.save(event);
+        event = eventRepository.save(event);
+        event.setState(calcEventState(event));
+        return event;
     }
 
     @Transactional
@@ -63,15 +66,17 @@ public class EventService {
         Set<Participation> participations = participationRepository.findAllByUserId(userId);
         List<Event> events = new ArrayList<>();
         for(Participation p : participations) {
-            events.add(p.getEvent());
+            Event event = p.getEvent();
+            event.setState(calcEventState(event));
+            events.add(event);
         }
         return events;
     }
 
-    public EventControllerDtos.EventState calcEventState(Event event) {
+    public Event.EventState calcEventState(Event event) {
         LocalDateTime now = LocalDateTime.now();
-        if(now.isBefore(event.getStartDateTime())) return EventControllerDtos.EventState.PLANNED;
-        if(now.isBefore(event.getStartDateTime().plusMinutes(event.getDuration()))) return EventControllerDtos.EventState.ONGOING;
-        return EventControllerDtos.EventState.PAST;
+        if(now.isBefore(event.getStartDateTime())) return Event.EventState.PLANNED;
+        if(now.isBefore(event.getStartDateTime().plusMinutes(event.getDuration()))) return Event.EventState.ONGOING;
+        return Event.EventState.PAST;
     }
 }

@@ -8,8 +8,6 @@ import java.time.LocalDateTime;
 
 public class EventControllerDtos {
 
-    public enum EventState { PLANNED, ONGOING, PAST }
-
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
