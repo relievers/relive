@@ -34,6 +34,23 @@
 			</div>
 		{/each}
 	</div>
+
+  <!-- Emoji-Banner -->
+  <div class="flex items-center space-x-4 p-2 bg-background shadow-md rounded-lg">
+    <div class="grid grid-cols-9 gap-4">
+      <div class="w-8 h-10 text-xl cursor-pointer text-center leading-10">&#128514</div>
+      <div class="w-8 h-10 text-xl cursor-pointer text-center leading-10">&#128077</div>
+      <div class="w-8 h-10 text-xl cursor-pointer text-center leading-10">&#128525</div>
+      <div class="w-8 h-10 text-xl cursor-pointer text-center leading-10">&#128526</div>
+      <div class="w-8 h-10 text-xl cursor-pointer text-center leading-10">&#128293</div>
+      <div class="w-8 h-10 text-xl cursor-pointer text-center leading-10">&#128640</div>
+      <div class="w-8 h-10 text-xl cursor-pointer text-center leading-10">&#128128</div>
+      <div class="w-8 h-10 text-xl cursor-pointer text-center leading-10">&#128551</div>
+      <div class="w-8  h-10 text-xl cursor-pointer text-center leading-10">&#128079</div>
+    </div>
+  </div>
+
+    <!-- Comment Input -->
     <div class="flex items-center space-x-4 p-4 bg-white shadow-md rounded-lg">
         <input
           type="text"
