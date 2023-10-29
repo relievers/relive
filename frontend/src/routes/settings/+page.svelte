@@ -20,7 +20,7 @@
         <form class="p-6 rounded-lg w-full h-full flex flex-col">
             <div class="mb-4">
                 <label for="change-username" class="block text-white text-sm font-bold mb-2">Change your name</label>
-                <input type="text" id="event-name" name="event-name" placeholder="{username}" class="border-none rounded-full w-full py-2 px-3 text-white bg-gray-200 focus:outline-none focus:border-blue-500" style="background-color: #282A31;">
+                <input required type="text" id="event-name" name="event-name" placeholder="{username}" class="border-none rounded-full w-full py-2 px-3 text-white bg-gray-200 focus:outline-none focus:border-blue-500" style="background-color: #282A31;">
             </div>
 
             

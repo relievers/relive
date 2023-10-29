@@ -32,7 +32,7 @@
 		{#each events as event}
 			<button on:click={() => selectEvent(event)} class="flex-shrink-0">
 				<img
-					class="thumbnail bg-black image-card rounded-md object-cover border-white
+					class="thumbnail bg-gray-500 image-card rounded-md object-cover border-white
                     {event === selectedEvent ? 'border' : ''}"
 					alt="Thumbnail"
 					src={event.url}
