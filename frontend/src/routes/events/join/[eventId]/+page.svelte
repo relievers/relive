@@ -18,9 +18,7 @@
 	async function joinEvent() {
 		const eventId = $page.params.eventId;
 		try {
-			const response = await api.post(`events/${eventId}/participations`, {});
-			const headers = response.headers;
-			console.log(headers);
+			const response = await api.post(`events/${eventId}/participations/`, {});
 			goto('/');
 		} catch (e) {
 			alert(e);
@@ -33,8 +31,7 @@
 			const json = await response.json();
 			const token = json.token;
 			localStorage.setItem("token", token);
-			// console.log(response);
-			// const bearerToken = authorizationHeader.split(' ');
+			await joinEvent();
 		} catch (e) {
 			alert(e);
 		}
