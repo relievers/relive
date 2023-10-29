@@ -34,7 +34,10 @@ public class EventService {
                 eventRequest.getStartDateTime(),
                 eventRequest.getDuration());
         newEvent.setOwner(owner);
-        return eventRepository.save(newEvent);
+        newEvent = eventRepository.save(newEvent);
+        Participation participation = new Participation(owner, newEvent);
+        participationRepository.save(participation);
+        return newEvent;
     }
 
     @Transactional
