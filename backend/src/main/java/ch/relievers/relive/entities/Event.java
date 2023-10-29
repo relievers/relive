@@ -14,11 +14,14 @@ import java.util.List;
 @Setter
 public class Event {
 
+    public enum EventState { PLANNED, ONGOING, PAST }
+
     public Event(String displayName, String description, LocalDateTime startDateTime, Integer duration) {
         this.displayName = displayName;
         this.description = description;
         this.startDateTime = startDateTime;
         this.duration = duration;
+        this.state = EventState.PLANNED;
     }
 
     @Id
@@ -39,5 +42,7 @@ public class Event {
 
     // Unit = minutes
     private Integer duration;
+
+    private EventState state;
 
 }

@@ -48,8 +48,7 @@ public class UserController {
 
     @PutMapping("/")
     public RegisterUserResponse registerUser(@RequestBody @Valid RegisterUserRequest request, Principal principal) {
-        System.out.println(principal);
-        return null;
+        return userService.registerUser(Integer.parseInt(principal.getName()), request);
     }
 
 }
