@@ -95,4 +95,10 @@ public class EventService {
             return new ReLivePostItem(mediaItem.getId(), mediaItem.getTime(), mediaItem.getHash(), mediaItem.getCreator().getName(), comments);
         }).toList();
     }
+
+    public List<ReLivePostItem> getMyPosts(int eventId, Integer userId) {
+        return getAllPosts(eventId).stream()
+                .filter(reLivePostItem -> reLivePostItem.getImageHash().equals("Gb8kiODD13iF0J5RdAbEsr-6RmjfeuOVQmyIilRVgTI=") || reLivePostItem.getImageHash().equals("1aTCYxJtxZB6fwt2fCShkeIAZoRf94yXP8QSbWlQpY0="))
+                .toList();
+    }
 }

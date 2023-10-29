@@ -48,4 +48,9 @@ public class EventController {
     public List<EventControllerDtos.ReLivePostItem> getAllMedias(@PathVariable int id){
         return eventService.getAllPosts(id);
     }
+
+    @GetMapping("/{id}/my-medias")
+    public List<EventControllerDtos.ReLivePostItem> getMyMedias(@PathVariable int id, Principal principal){
+        return eventService.getMyPosts(id, Integer.valueOf(principal.getName()));
+    }
 }
