@@ -3,5 +3,5 @@
 </script>
 
 <main class="flex-grow">
-	<Relive />
+	<Relive mediaEndpoint="medias"/>
 </main>

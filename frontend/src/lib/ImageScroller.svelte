@@ -14,7 +14,7 @@
 			return;
 		}
 
-		const thumbnail = document.querySelector(`.thumbnail[src='${selectedEvent.url}']`);
+		const thumbnail = document.querySelector(`.thumbnail[src='/media/${selectedEvent.imageHash}.jpg']`);
 		if (!thumbnail) return;
 		thumbnail.scrollIntoView({ inline: 'center', behavior: 'smooth' });
 	};
@@ -35,7 +35,7 @@
 					class="thumbnail bg-gray-500 image-card rounded-md object-cover border-white
                     {event === selectedEvent ? 'border' : ''}"
 					alt="Thumbnail"
-					src={event.url}
+					src={`/media/${event.imageHash}.jpg`}
 				/>
 			</button>
 		{/each}

@@ -47,6 +47,7 @@
             <!-- TODO: Display thumbnail image of event -->
         </a>
         <a href="/timeline" class="btn bg-white btn-primary rounded-xl text-accent text-center font-bold py-3 my-2">ReLive Past Event 🎉</a>
+        <a href="/my-timeline" class="btn bg-white btn-primary rounded-xl text-accent text-center font-bold py-3 my-2">ReLive Photos of Me🎉</a>
     </div>
     <div class="flex flex-col mt-14">
         <h2 class="text-white text-2xl">Manage Events</h2>
