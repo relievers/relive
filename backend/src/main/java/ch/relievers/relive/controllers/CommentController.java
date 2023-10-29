@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CommentController {
 
-    private CommentService commentService;
+    private final CommentService commentService;
 
     @GetMapping("/")
     public List<Comment> receiveCommentsForMediaItem(
@@ -23,11 +23,12 @@ public class CommentController {
     }
 
     @PostMapping("/")
-    public Comment createNewComment(
+    public CommentControllerDto.CreateCommentResponse createNewComment(
             @RequestBody CommentControllerDto.CreateCommentRequest commentRequest,
-            @PathVariable String media_id,
+            @PathVariable int media_id,
             Principal principal) {
         commentRequest.setUserId(Integer.valueOf(principal.getName()));
+        commentRequest.setMediaId(media_id);
         return commentService.createComment(commentRequest);
     }
 }

@@ -8,20 +8,22 @@ import ch.relievers.relive.repositories.CommentRepository;
 import ch.relievers.relive.repositories.MediaItemRepository;
 import ch.relievers.relive.repositories.UserRepository;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CommentService {
 
-    private UserRepository userRepository;
-    private MediaItemRepository mediaItemRepository;
-    private CommentRepository commentRepository;
+    private final UserRepository userRepository;
+    private final MediaItemRepository mediaItemRepository;
+    private final CommentRepository commentRepository;
 
     @Transactional
-    public Comment createComment(CommentControllerDto.CreateCommentRequest commentRequest) {
+    public CommentControllerDto.CreateCommentResponse createComment(CommentControllerDto.CreateCommentRequest commentRequest) {
         User owner = userRepository.findById(commentRequest.getUserId()).orElseThrow();
         MediaItem mediaItem = mediaItemRepository
                 .findById(commentRequest.getMediaId()).orElseThrow();
@@ -31,7 +33,8 @@ public class CommentService {
                 commentRequest.getContent(),
                 LocalDateTime.now()
         );
-        return commentRepository.save(comment);
+        var newComment = commentRepository.save(comment);
+        return new CommentControllerDto.CreateCommentResponse(newComment.getId(), newComment.getContent(), newComment.getOwner().getName(), newComment.getDateTime());
     }
 
     public List<Comment> getCommentsForMediaItem(Integer mediaId) {
