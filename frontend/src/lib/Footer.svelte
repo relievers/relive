@@ -1,7 +1,16 @@
 <script>
 	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
+	import { getUser } from './user-service';
 
-	let user = { activeEvent: false };
+	let user = null;
+
+	const init = () => {
+		user = getUser();
+	};
+
+	onMount(init);
+
 </script>
 
 <div class="bg-background text-gray-400 p-4">
@@ -16,7 +25,7 @@
 				<span class="text-xs">Events</span>
 			</a>
 		</div>
-		{#if !user.activeEvent}
+		{#if user}
 			<div class="w-1/3 text-center">
 				<a
 					class="bg-transparent font-bold flex flex-col items-center"
