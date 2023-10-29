@@ -1,4 +1,6 @@
 # face-recognition
+Basic face recognition service for detecting profile picture faces in event images.
+
 ## Installation and Running
 Installation:
 ```plaintext
@@ -16,16 +18,26 @@ flask run
 ```plaintext
 Request body:
 {
-    'event_paths': [event_path1, event_path2, ...],
-    'user_paths': [user_path1, user_path2, ...]
+    'event_paths': ['event_path1', 'event_path2', ...],
+    'user_paths': ['user_path1', 'user_path2', ...]
 }
 ```
 
 Response body:
 ```plaintext
+Response body:
 {
-    'event_path1': [user_path, ...],
-    'event_path2': [user_path, ...],
-    ...
+    'event_path1': [
+        'user_path1': {
+            'x': x_coord,
+            'y': y_coord
+        }, ...
+    ],
+    'event_path2': [
+        'user_path2': {
+            'x': x_coord,
+            'y': y_coord
+        }, ...
+    ], ...
 }
 ```
