@@ -34,4 +34,15 @@
 			</div>
 		{/each}
 	</div>
+    <div class="flex items-center space-x-4 p-4 bg-white shadow-md rounded-lg">
+        <input
+          type="text"
+          class="flex-1 py-2 px-4 rounded-full bg-gray-100 focus:outline-none focus:ring focus:border-blue-500"
+          placeholder="Comment..."
+        />
+      
+        <button type="submit" class="px-4 py-2 text-white rounded-full transition duration-300 ease-in-out" style="background-color: #5C3D95">
+            <i class="fa  fa-paper-plane text-1xl mx-auto"></i>
+        </button>
+      </div>
 </div>
