@@ -82,7 +82,7 @@
         {/each}
     </div>
     <div class="fixed bottom-20 py-3 right-8 mt-auto flex justify-between">
-        <a class="ml-auto text-white font-bold py-3 px-4 rounded-full" style="background-color:#5C3D95" href="/createevent">
+        <a class="flex justify-center items-center ml-auto text-white font-bold w-16 h-16 rounded-full" style="background-color:#5C3D95" href="/events/create">
             <i class="fa fa-plus text-2xl mx-auto"></i>
         </a>
     </div>
