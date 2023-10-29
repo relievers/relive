@@ -1,5 +1,7 @@
 package ch.relievers.relive.services;
 
+import ch.relievers.relive.dtos.UserControllerDtos;
+import ch.relievers.relive.dtos.UserControllerDtos.RegisterUserRequest;
 import ch.relievers.relive.dtos.UserControllerDtos.RegisterUserResponse;
 import ch.relievers.relive.entities.User;
 import ch.relievers.relive.repositories.UserRepository;
@@ -29,7 +31,12 @@ public class UserService {
         return new RequestAutoUserResponse(createdUser.getId(), createdUser.getName(), createdUser.getRegistrationState().name());
     }
 
-    public RegisterUserResponse registerUser(String email, String password) {
-        return null;
+    public RegisterUserResponse registerUser(int userId, RegisterUserRequest request) {
+        User user = userRepository.findById(userId).orElseThrow();
+        user.setEmail(request.getEmail());
+        user.setPwHash(encoder.encode(request.getPassword()));
+        user.setRegistrationState(User.RegistrationState.REGISTERED);
+        userRepository.save(user);
+        return new RegisterUserResponse(user.getId(), user.getName(), user.getEmail(), user.getRegistrationState().name());
     }
 }
