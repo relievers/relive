@@ -1,7 +1,7 @@
 {
 	"short_name": "ReLive 💫",
 	"name": "ReLive: Relive your moments!",
-	"startur1": "/",
+	"start_url": ".",
 	"icons": [
 		{
 			"src": "icons/icon-72x72.png",
@@ -44,9 +44,18 @@
 			"type": "image/png"
 		  }
 	],
-	"background-color": "#04242C",
+	"screenshots" : [
+		{
+		  "src": "screenshots/screenshotMain.png",
+		  "sizes": "375x667",
+		  "type": "image/png",
+		  "form_factor": "narrow",
+		  "label": "ReLive Homescreen"
+		}
+	],
+	"background-color": "#11151A",
 	"display": "standalone",
 	"scope": "/",
-	"theme color": "#5C3D95",
+	"theme color": "#581C87",
 	"description": "Relive lets you share media with other participants of an event."
 }
