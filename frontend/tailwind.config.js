@@ -4,13 +4,13 @@ export default {
 	theme: {
 		extend: {
 			backgroundColor: {
-				'background': '#11151A',
-				'accent': '#5C3D95'
+				background: '#11151A',
+				accent: '#5C3D95'
 			},
 			textColor: {
-				'accent': '#5C3D95'
+				accent: '#5C3D95'
 			}
 		}
 	},
-	plugins: []
+	plugins: [require('tailwindcss-safe-area')]
 };
