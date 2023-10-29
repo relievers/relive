@@ -22,17 +22,17 @@
         <form class="p-6 rounded-lg w-full h-full flex flex-col">
             <div class="mb-4">
                 <label for="event-name" class="block text-white text-sm font-bold mb-2">Event Name</label>
-                <input type="text" id="event-name" name="event-name" class="border-none rounded-full w-full py-2 px-3 text-white bg-gray-200 focus:outline-none focus:border-blue-500" style="background-color: #282A31;" placeholder="PDC World Darts Championship 2024">
+                <input required type="text" id="event-name" name="event-name" class="border-none rounded-full w-full py-2 px-3 text-white bg-gray-200 focus:outline-none focus:border-blue-500" style="background-color: #282A31;" placeholder="PDC World Darts Championship 2024">
             </div>
 
             <div class="mb-4">
                 <label for="event-description" class="block text-white text-sm font-bold mb-2">Event Description</label>
-                <textarea id="event-description" name="event-description" class="border-none rounded-3xl w-full py-2 px-3 text-white bg-gray-200 focus:outline-none focus:border-blue-500" style="background-color: #282A31;" placeholder="Ally Pally London"></textarea>
+                <textarea required id="event-description" name="event-description" class="border-none rounded-3xl w-full py-2 px-3 text-white bg-gray-200 focus:outline-none focus:border-blue-500" style="background-color: #282A31;" placeholder="Ally Pally London"></textarea>
             </div>
 
             <div class="mb-4">
                 <label for="start-date-time" class="block text-white text-sm font-bold mb-2">Start Date & Time</label>
-                <input type="datetime-local" id="start-date-time" name="start-date-time" class="border-none rounded-full w-full py-2 px-3 text-white bg-gray-200 focus:outline-none focus:border-blue-500" style="background-color: #282A31;">
+                <input required type="datetime-local" id="start-date-time" name="start-date-time" class="border-none rounded-full w-full py-2 px-3 text-white bg-gray-200 focus:outline-none focus:border-blue-500" style="background-color: #282A31;">
             </div>
 
             <div class="mb-4">
