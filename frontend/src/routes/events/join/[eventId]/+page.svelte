@@ -30,10 +30,9 @@
 	async function createUser() {
 		try {
 			const response = await api.post('users/', { name: name });
-			const authorizationHeader = response.headers;
-			const json =await response.json();
-			console.log(json);
+			const json = await response.json();
 			const token = json.token;
+			localStorage.setItem("token", token);
 			// console.log(response);
 			// const bearerToken = authorizationHeader.split(' ');
 		} catch (e) {
