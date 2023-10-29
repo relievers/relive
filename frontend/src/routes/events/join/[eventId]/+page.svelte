@@ -1,4 +1,5 @@
 <script>
+	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import api from '$lib/api';
 	import { getUser } from '$lib/user-service';
@@ -19,6 +20,7 @@
 		try {
 			const response = await api.post(`events/${eventId}/participations`, {});
 			console.log(response);
+			goto('/');
 		} catch (e) {
 			alert(e);
 		}
@@ -27,7 +29,7 @@
 	async function createUser() {
 		try {
 			const response = await api.post('users', { name: name });
-            console.log(response);
+			console.log(response);
 		} catch (e) {
 			alert(e);
 		}
@@ -38,11 +40,11 @@
 	class="flex-grow bg-background text-center flex flex-col justify-between items-center text-white px-16 py-8 relative"
 >
 	<button
-        on:click={createUser}
+		on:click={createUser}
 		class="bg-accent h-14 w-14 rounded-full absolute bottom-10 mb-4 right-8 flex justify-center items-center"
 	>
 		<i class="fa fa-arrow-right" />
-</button>
+	</button>
 	<!-- <h1 class="text-4xl">Name</h1> -->
 	<div />
 
