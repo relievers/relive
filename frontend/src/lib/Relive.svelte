@@ -26,7 +26,11 @@
 
 	const showComments = () => {
 		showingComments = true;
-	}
+	};
+
+	const starEvent = () => {
+		selectedEvent.starred = !selectedEvent.starred;
+	};
 
 	onMount(() => {
 		Api.get(`events/1/${mediaEndpoint}`).then(res => res.json()).then(e => {
@@ -60,8 +64,8 @@
 			<!-- <img src="logoWithText.png" alt="Test" /> -->
 			<!-- Button Bar -->
 			<div class="absolute bottom-10 right-1/3 left-1/3 flex justify-center">
-				<button class="flex items-center px-7 py-3 text-white rounded-l-full" style="background-color:#5C3D95">
-					<i class="fa fa-star text-2xl mr-2"></i>
+				<button on:click={starEvent} class="flex items-center px-7 py-3 text-white rounded-l-full" style="background-color:#5C3D95">
+					<i class="fa fa-star text-2xl mr-2"  style="color: {selectedEvent.starred ? '#FFCD29' : 'white'}"></i>
 				</button>
 				<button on:click={showComments} class="flex items-center px-7 py-3 text-white rounded-r-full" style="background-color:#5C3D95">
 					<i class="fa fa-comment text-2xl mr-2"></i>
