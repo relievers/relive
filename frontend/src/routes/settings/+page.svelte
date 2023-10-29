@@ -1,5 +1,6 @@
 <script>
 	import Comment from "$lib/Comment.svelte";
+	import Commentsection from "$lib/Commentsection.svelte";
 
     let username = "Hubertus"; // TODO: load username
 </script>
