@@ -42,7 +42,7 @@ public class UserController {
         String jwt = jwtUtils.generateJwtToken(authentication);
 
         return ResponseEntity.status(HttpStatus.CREATED)
-                .header("Authorization", "Bearer " + jwt)
+                .header("Auth", "Bearer " + jwt)
                 .body(newUserDto);
     }
 
