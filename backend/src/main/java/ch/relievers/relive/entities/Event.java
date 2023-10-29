@@ -1,5 +1,6 @@
 package ch.relievers.relive.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,6 +33,7 @@ public class Event {
     private User owner;
 
     @OneToMany(mappedBy = "event")
+    @JsonIgnore
     private List<MediaItem> medias;
 
     private String displayName;
