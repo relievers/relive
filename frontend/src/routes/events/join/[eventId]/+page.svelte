@@ -19,7 +19,8 @@
 		const eventId = $page.params.eventId;
 		try {
 			const response = await api.post(`events/${eventId}/participations`, {});
-			console.log(response);
+			const headers = response.headers;
+			console.log(headers);
 			goto('/');
 		} catch (e) {
 			alert(e);
@@ -30,7 +31,10 @@
 		try {
 			const response = await api.post('users/', { name: name });
 			const authorizationHeader = response.headers;
-			console.log(response);
+			const json =await response.json();
+			console.log(json);
+			const token = json.token;
+			// console.log(response);
 			// const bearerToken = authorizationHeader.split(' ');
 		} catch (e) {
 			alert(e);

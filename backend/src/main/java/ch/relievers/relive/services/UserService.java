@@ -28,7 +28,7 @@ public class UserService {
     public RequestAutoUserResponse createAutoUser(String name) {
         User newUser = new User(name, User.RegistrationState.AUTO_CREATED, encoder.encode(defaultPassword));
         User createdUser = userRepository.save(newUser);
-        return new RequestAutoUserResponse(createdUser.getId(), createdUser.getName(), createdUser.getRegistrationState().name());
+        return new RequestAutoUserResponse(createdUser.getId(), createdUser.getName(), createdUser.getRegistrationState().name(), null);
     }
 
     public RegisterUserResponse registerUser(int userId, RegisterUserRequest request) {

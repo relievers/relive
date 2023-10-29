@@ -40,9 +40,11 @@ public class UserController {
                 new UsernamePasswordAuthenticationToken(newUserDto.getId(), defaultPassword));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
+        newUserDto.setToken(jwt);
 
         return ResponseEntity.status(HttpStatus.CREATED)
-                .header("Auth", "Bearer " + jwt)
+                .header("X-Auth", "Bearer " + jwt)
+                .header("X-bullshit", "aksdjflkasjdflk")
                 .body(newUserDto);
     }
 

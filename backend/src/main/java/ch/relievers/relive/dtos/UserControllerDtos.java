@@ -25,6 +25,7 @@ public class UserControllerDtos {
         private int id;
         private String name;
         private String registrationState;
+        private String token;
     }
 
     @Data
