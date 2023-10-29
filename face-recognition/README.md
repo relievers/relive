@@ -15,8 +15,9 @@ flask run
 ## Usage
 ### Find user images in event images
 `POST /find-user-imgs-in-event-imgs`
-```plaintext
+
 Request body:
+```plaintext
 {
     'event_paths': ['event_path1', 'event_path2', ...],
     'user_paths': ['user_path1', 'user_path2', ...]
@@ -25,7 +26,6 @@ Request body:
 
 Response body:
 ```plaintext
-Response body:
 {
     'event_path1': [
         'user_path1': {
@@ -41,3 +41,4 @@ Response body:
     ], ...
 }
 ```
+
