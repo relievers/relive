@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import api from '$lib/api';
-	import { getUser } from '$lib/user-service';
+	import { getUser, setUser } from '$lib/user-service';
 	import { onMount } from 'svelte';
 
 	let user;
@@ -18,26 +18,23 @@
 	async function joinEvent() {
 		const eventId = $page.params.eventId;
 		try {
-			const response = await api.post(`events/${eventId}/participations`, {});
-			const headers = response.headers;
-			console.log(headers);
+			const response = await api.post(`events/${eventId}/participations/`, {});
 			goto('/');
 		} catch (e) {
-			alert(e);
+			console.error(e);
 		}
 	}
 
 	async function createUser() {
 		try {
 			const response = await api.post('users/', { name: name });
-			const authorizationHeader = response.headers;
-			const json =await response.json();
-			console.log(json);
+			const json = await response.json();
 			const token = json.token;
-			// console.log(response);
-			// const bearerToken = authorizationHeader.split(' ');
+			localStorage.setItem('token', token);
+			setUser(json);
+			await joinEvent();
 		} catch (e) {
-			alert(e);
+			console.error(e);
 		}
 	}
 </script>
