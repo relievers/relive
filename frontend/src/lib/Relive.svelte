@@ -15,16 +15,31 @@
 	];
 
 	let selectedEvent = events[0];
+
+	const goBackwards = () => {
+		const indexOfPreviousElement = Math.max(events.indexOf(selectedEvent) - 1, 0);
+		selectedEvent = events[indexOfPreviousElement];
+	};
+
+	const goForwards = () => {
+		const indexOfNextElement = Math.min(events.indexOf(selectedEvent) + 1, events.length - 1);
+		selectedEvent = events[indexOfNextElement];
+	};
 </script>
 
 <section class="h-full flex flex-col">
 	<Timeline />
-	<div class="flex-grow">
+	<div class="flex-grow relative">
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<dv class="h-full w-1/4 absolute z-20 opacity-0" on:click={goBackwards} />
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<dv class="h-full w-1/4 absolute right-0 z-20 opacity-0" on:click={goForwards} />
 		<img
 			class="max-h-full h-full w-full object-cover rounded-xl"
 			src={selectedEvent.url}
 			alt="Main Thumbnail"
 		/>
+		<!-- Backwards -->
 		<!-- <img src="logoWithText.png" alt="Test" /> -->
 		<!-- Button Bar -->
 	</div>
