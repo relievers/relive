@@ -1,4 +1,6 @@
 <script>
+	import Comment from "$lib/Comment.svelte";
+
     let username = "Hubertus"; // TODO: load username
 </script>
 
