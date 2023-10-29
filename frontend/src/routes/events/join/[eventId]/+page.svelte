@@ -18,7 +18,7 @@
 	async function joinEvent() {
 		const eventId = $page.params.eventId;
 		try {
-			const response = await api.post(`events/${eventId}/participations/`, {});
+			const response = await api.post(`events/${eventId}/participations`, {});
 			goto('/');
 		} catch (e) {
 			alert(e);

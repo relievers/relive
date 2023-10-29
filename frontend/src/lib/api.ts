@@ -5,7 +5,7 @@ function getToken() {
 }
 
 function get(path: string) {
-	return fetch(DATABASE_URL + path, { method: 'GET', headers: { Atuhorization: getToken() } }).then(
+	return fetch(DATABASE_URL + path, { method: 'GET', headers: { Authorization: getToken() } }).then(
 		(res) => {
 			if (!res.ok) {
 				throw res;
