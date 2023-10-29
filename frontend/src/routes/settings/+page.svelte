@@ -4,10 +4,17 @@
 
 <div class="flex-grow w-full">
     <div class="bg-background min-h-full flex flex-col justify-center items-center">
-        <div class="rounded-full overflow-hidden w-64 h-64 mb-10 mt-10">
-            <!-- Currently placeholder Profile Picture -->
-            <img src="emptyProfilePicture.png" alt="{username}' Profile Picture" class="w-full h-full object-cover" />
-          </div>
+        <div class="relative w-64 h-64 mb-10 mt-10">
+            <!-- Placeholder Profile Picture -->
+            <img src="emptyProfilePicture.png" alt="{username}'s Profile Picture" class="rounded-full w-full h-full object-cover" />
+            
+            <!-- Button to change Profile Picutre (TODO: Functionality) -->
+            <button class="absolute bottom-0 right-0 text-white font-bold py-5 px-6 rounded-full" style="background-color:#5C3D95">
+                <i class="fa fa-camera"></i>
+            </button>
+        </div>
+        
+
         <h1 class="text-white text-4xl">Hello {username}</h1>
         
         <form class="p-6 rounded-lg w-full h-full flex flex-col">
