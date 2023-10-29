@@ -50,6 +50,15 @@
 		<!-- Backwards -->
 		<!-- <img src="logoWithText.png" alt="Test" /> -->
 		<!-- Button Bar -->
+		<div class="flex justify-center">
+			<button class="flex items-center px-7 py-3 text-white rounded-l-full" style="background-color:#5C3D95">
+				<i class="fa fa-star text-2xl mr-2"></i>
+			</button>
+			<button class="flex items-center px-7 py-3 text-white rounded-r-full" style="background-color:#5C3D95">
+				<i class="fa fa-comment text-2xl mr-2"></i>
+			</button>
+		</div>
+
 	</div>
 	<ImageScroller {events} bind:selectedEvent />
 </section>
