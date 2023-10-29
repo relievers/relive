@@ -1,4 +1,7 @@
 <script>
+	import { goto } from '$app/navigation';
+	import Back from './Back.svelte';
+	import Close from './Close.svelte';
 	import ImageScroller from './ImageScroller.svelte';
 	import Timeline from './Timeline.svelte';
 
@@ -27,7 +30,14 @@
 	};
 </script>
 
-<section class="h-full flex flex-col">
+<section class="h-full flex flex-col relative">
+	<div class="bg-transparent absolute text-white top-20 left-2 z-30">
+		<!-- angle-left -->
+		<a href="/events" class="w-8 h-8 p-4 rounded-full">
+			<i class="fa fa-close text-2xl mx-auto" />
+		</a>
+	</div>
+
 	<Timeline />
 	<div class="flex-grow relative">
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -35,7 +45,7 @@
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<dv class="h-full w-1/4 absolute right-0 z-20 opacity-0" on:click={goForwards} />
 		<img
-			class="max-h-full h-full w-full object-cover rounded-xl"
+			class="max-h-full h-full w-full object-cover rounded-xl -z-10"
 			src={selectedEvent.url}
 			alt="Main Thumbnail"
 		/>
