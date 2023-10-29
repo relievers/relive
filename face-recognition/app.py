@@ -9,8 +9,8 @@ event images using their profile picutre.
 
 Request body:
 {
-    'events': [event_path1, event_path2, ...],
-    'users': [user_path1, user_path2, ...]
+    'event_paths': [event_path1, event_path2, ...],
+    'user_paths': [user_path1, user_path2, ...]
 }
 
 Response body:
@@ -22,14 +22,14 @@ Response body:
 
 TODO: Configure deployment
 """
-@app.route('/find-user-imgs-in-events', methods=['POST'])
+@app.route('/find-user-imgs-in-event-imgs', methods=['POST'])
 def find_user_imgs_in_events():
     try:
         req = request.get_json()
         print(req)
 
-        event_imgs = req['events']
-        user_imgs = req['users']
+        event_imgs = req['event_paths']
+        user_imgs = req['user_paths']
 
         res_map = {}
 
@@ -48,4 +48,4 @@ def find_user_imgs_in_events():
 
 @app.route('/test', methods=['GET'])
 def test():
-    return 'OK', 200
+    return 'OK', 2
