@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import ImageScroller from './ImageScroller.svelte';
 	import Timeline from './Timeline.svelte';
+	import Commentsection from './Commentsection.svelte';
 
 	const events = [
 		{ id: 1, url: 'https://picsum.photos/id/234/200/300' },
@@ -17,6 +18,8 @@
 
 	let selectedEvent = events[0];
 
+	let showingComments;
+
 	const goBackwards = () => {
 		const indexOfPreviousElement = Math.max(events.indexOf(selectedEvent) - 1, 0);
 		selectedEvent = events[indexOfPreviousElement];
@@ -26,6 +29,10 @@
 		const indexOfNextElement = Math.min(events.indexOf(selectedEvent) + 1, events.length - 1);
 		selectedEvent = events[indexOfNextElement];
 	};
+
+	const showComments = () => {
+		showingComments = true;
+	}
 </script>
 
 <section class="h-full flex flex-col relative">
@@ -54,11 +61,14 @@
 			<button class="flex items-center px-7 py-3 text-white rounded-l-full" style="background-color:#5C3D95">
 				<i class="fa fa-star text-2xl mr-2"></i>
 			</button>
-			<button class="flex items-center px-7 py-3 text-white rounded-r-full" style="background-color:#5C3D95">
+			<button on:click={showComments} class="flex items-center px-7 py-3 text-white rounded-r-full" style="background-color:#5C3D95">
 				<i class="fa fa-comment text-2xl mr-2"></i>
 			</button>
 		</div>
-
 	</div>
 	<ImageScroller {events} bind:selectedEvent />
+
+	{#if showingComments}
+		<Commentsection bind:event={selectedEvent} bind:showingComments/>
+	{/if}
 </section>
