@@ -1,7 +1,5 @@
 <script>
 	import { goto } from '$app/navigation';
-	import Back from './Back.svelte';
-	import Close from './Close.svelte';
 	import ImageScroller from './ImageScroller.svelte';
 	import Timeline from './Timeline.svelte';
 
