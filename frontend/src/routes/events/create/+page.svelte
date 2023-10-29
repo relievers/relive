@@ -46,13 +46,12 @@
             
             <div class="flex justify-between mt-5">
                 <div class="mt-auto flex justify-between">
-                    <a class="ml-auto text-white font-bold py-3 px-4 rounded-full" style="background-color:#CC2020" href="/events">
+                    <a class="flex justify-center items-center ml-auto text-white font-bold w-16 h-16 rounded-full" style="background-color:#CC2020" href="/events">
                         <i class="fa fa-times text-2xl mx-auto"></i>
                     </a>
                 </div>
-
                 <div class="mt-auto flex justify-between">
-                    <button type="submit" class="ml-auto text-white font-bold py-3 px-4 rounded-full" style="background-color:#5C3D95">
+                    <button type="submit" class="flex justify-center items-center ml-auto text-white font-bold w-16 h-16 rounded-full bg-accent">
                         <i class="fa fa-check text-2xl mx-auto"></i>
                     </button>
                 </div>

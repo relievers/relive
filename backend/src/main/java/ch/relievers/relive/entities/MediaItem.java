@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity(name = "`media`")
 @NoArgsConstructor
@@ -36,5 +37,7 @@ public class MediaItem {
     @JoinColumn(name = "creator_id")
     private User creator;
 
+    @OneToMany(mappedBy = "mediaItem")
+    private List<Comment> comments;
 
 }

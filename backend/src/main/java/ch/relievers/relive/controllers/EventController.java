@@ -1,6 +1,7 @@
 package ch.relievers.relive.controllers;
 
 import ch.relievers.relive.dtos.EventControllerDtos;
+import ch.relievers.relive.dtos.EventControllerDtos.ReLivePostItem;
 import ch.relievers.relive.entities.Event;
 import ch.relievers.relive.entities.Participation;
 import ch.relievers.relive.services.EventService;
@@ -41,5 +42,10 @@ public class EventController {
     @PostMapping("/{id}/participations")
     public Participation participateEvent(@PathVariable Integer id, Principal principal) {
         return eventService.participateEvent(id, Integer.valueOf(principal.getName()));
+    }
+
+    @GetMapping("/{id}/medias")
+    public List<EventControllerDtos.ReLivePostItem> getAllMedias(@PathVariable int id){
+        return eventService.getAllPosts(id);
     }
 }

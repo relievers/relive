@@ -85,7 +85,7 @@
 	<reader id="reader" class="absolute w-full h-full bg-black object-cover pointer-events-none -z-20" />
 
 	<!-- svelte-ignore a11y-media-has-caption -->
-	<!-- <video
+	<video
 		bind:this={video}
 		class="h-full w-full absolute bg-black object-cover pointer-events-none -z-10"
 		playsinline
@@ -109,7 +109,7 @@
         <a href="/events/create" type="submit" class="flex justify-center items-center ml-auto text-white font-bold w-16 h-16 rounded-full mr-8 bg-accent">
             <i class="fa fa-plus text-2xl mx-auto"></i>
         </a>
-    </section> -->
+    </section>
 
 </main>
 

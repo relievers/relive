@@ -1,10 +1,13 @@
 package ch.relievers.relive.services;
 
 import ch.relievers.relive.dtos.EventControllerDtos;
+import ch.relievers.relive.dtos.EventControllerDtos.ReLivePostItem;
 import ch.relievers.relive.entities.Event;
+import ch.relievers.relive.entities.MediaItem;
 import ch.relievers.relive.entities.Participation;
 import ch.relievers.relive.entities.User;
 import ch.relievers.relive.repositories.EventRepository;
+import ch.relievers.relive.repositories.MediaItemRepository;
 import ch.relievers.relive.repositories.ParticipationRepository;
 import ch.relievers.relive.repositories.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -24,6 +27,7 @@ public class EventService {
     private final EventRepository eventRepository;
     private final UserRepository userRepository;
     private final ParticipationRepository participationRepository;
+    private final MediaItemRepository mediaItemRepository;
 
     @Transactional
     public Event createEvent(EventControllerDtos.CreateEventRequest eventRequest, Integer ownerId) {
@@ -78,5 +82,17 @@ public class EventService {
         if(now.isBefore(event.getStartDateTime())) return Event.EventState.PLANNED;
         if(now.isBefore(event.getStartDateTime().plusMinutes(event.getDuration()))) return Event.EventState.ONGOING;
         return Event.EventState.PAST;
+    }
+
+    public List<ReLivePostItem> getAllPosts(int eventId) {
+        Event event = eventRepository.findById(eventId).orElseThrow();
+        List<MediaItem> mediaItems = mediaItemRepository.getAllByEvent(event);
+
+        return mediaItems.stream().map(mediaItem -> {
+            var comments = mediaItem.getComments().stream()
+                    .map(comment -> new ReLivePostItem.Comment(comment.getId(), comment.getOwner().getId(), comment.getOwner().getName(), comment.getDateTime(), comment.getContent()))
+                    .toList();
+            return new ReLivePostItem(mediaItem.getId(), mediaItem.getTime(), mediaItem.getHash(), mediaItem.getCreator().getName(), comments);
+        }).toList();
     }
 }
