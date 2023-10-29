@@ -19,15 +19,4 @@ public class EventControllerDtos {
         private LocalDateTime startDateTime;
         private Integer duration;
     }
-
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    public static class GenericEventResponse {
-        private String displayName;
-        private String description;
-        private LocalDateTime startDateTime;
-        private Integer duration;
-        private EventState state;
-    }
 }

@@ -48,11 +48,11 @@ public class EventService {
     }
 
     @Transactional
-    public void participateEvent(Integer eventId, Integer userId) {
+    public Participation participateEvent(Integer eventId, Integer userId) {
         User user = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new);
         Event event = eventRepository.findById(eventId).orElseThrow(EntityNotFoundException::new);
         Participation participation = new Participation(user, event);
-        participationRepository.save(participation);
+        return participationRepository.save(participation);
     }
 
 
