@@ -2,6 +2,6 @@
 	import Relive from '$lib/Relive.svelte';
 </script>
 
-<main class="flex-grow bg-green-300">
+<main class="flex-grow">
 	<Relive />
 </main>
