@@ -31,6 +31,7 @@
 	"type": "module",
 	"dependencies": {
 		"html5-qrcode": "^2.3.8",
+		"localtunnel": "^2.0.2",
 		"tailwindcss-safe-area": "^0.4.1"
 	}
 }

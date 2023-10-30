@@ -9,6 +9,8 @@
 	let name = '';
 
 	onMount(() => {
+		setUser(null)
+		localStorage.setItem("token", null)
 		user = getUser();
 		if (!user) return;
 

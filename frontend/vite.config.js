@@ -4,9 +4,9 @@ import { sveltekit } from '@sveltejs/kit/vite';
 
 /** @type {import('vite').UserConfig} */
 const config = {
-	plugins: [sveltekit(), basicSSL()],
+	plugins: [sveltekit()],
 	server: {
-		https: true
+		https: false
 	}
 };
 

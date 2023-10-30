@@ -32,7 +32,7 @@
 				video: {
 					facingMode: 'environment',
 					aspectRatio: 1.3333333333,
-					width: { min: 2560 }
+					//width: { min: 2560 }
 				}
 			});
 			video.srcObject = stream;
